@@ -3,31 +3,23 @@ angular.module('todoApp', [])
   .controller('appController', function ($http) {
     var app = this
     Name()
-    send()
-    Subtree()
+    ip()
     app.title = 'Monitor'
     // app.ipnetwork = []
-    function Subtree () {
-      $http.get('/subtree')
-        .then(function success (response) {
-          app.ipnetwork = response
-        }, function error (response) {
-          alert(response)
-        })
-    }
+
     function Name () {
       $http.get('/name').then(function success (response) {
-        app.os = response.data
-        console.log(app.os)
+        app.name = response.data
+        console.log(app.name)
       })
     }
 
-    function send () {
-      $http.get('/name')
-        .then(function success (response) {
-          console.log(response)
-        }, function error (response) {
-          alert(response.data.message)
-        })
+    function ip () {
+      $http.get('/ip').then(function success (response) {
+        app.ip = response.data
+        console.log(app.ip)
+      })
     }
+
+
   })
