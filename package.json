@@ -8,8 +8,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chart.js": "^2.0.2",
     "express": "^4.13.4",
-    "myspeed": "^1.0.2",
     "snmp-native": "^1.0.20",
     "speedtest-net": "^1.2.5",
     "standard": "^5.4.1"

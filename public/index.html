@@ -10,16 +10,38 @@
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
   <!--<link rel="stylesheet" href="todo.css">-->
+  <!-- <script src="Chart.js"></script> -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.1/Chart.bundle.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.1/Chart.bundle.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.1/Chart.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.1/Chart.min.js"></script>
 </head>
 <body ng-controller="appController as app">
 
   <div ng-repeat="show in app.name">
-    {{show.name}}
+    name : {{show.name}}
+    uptime : {{show.uptime}}
     <hr>
   </div>
+  <div>
+    download : {{app.speed[0].speeds.download}} <br>
+    upload : {{app.speed[0].speeds.upload}} <br>
+    <hr>
+  </div>
+  <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
+  <!-- <script>
+  var ctx = document.getElementById("myChart");
+  var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: options
+}); -->
 
+  </script>
+  <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
   <div ng-repeat="show in app.ip">
-    {{show.ip}}   
+
+    {{show.ip[0]}}.{{show.ip[1]}}.{{show.ip[2]}}.{{show.ip[3]}}
     <hr>
   </div>
 

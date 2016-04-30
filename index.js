@@ -1,6 +1,7 @@
 var express = require('express')
 var app = express()
 var snmp = require('snmp-native')
+var speedTest = require('speedtest-net')
 // var host = '10.1.160.1' // fitmwifi
 var host = '10.4.15.1' // fitmwifi
 // 10.4.15.1
@@ -11,12 +12,24 @@ var session = new snmp.Session({ host: host, community: community })
 var session2 = new snmp.Session({ host: host, community: community })
 var session3 = new snmp.Session({ host: host, community: community })
 var oid1 = [1, 3, 6, 1, 2, 1, 1]
-var oid2 = '.1.3.6.1.2.1.4.20.1.1' //ip
-var oid3 = '.1.3.6.1.2.1.4.20.1.3' //subnet
+var oid2 = '.1.3.6.1.2.1.4.21.1.1' // ip
+var oid3 = '.1.3.6.1.2.1.4.21.1.11' // subnet
 var vb = []
 var ip = []
 var subnet = []
-// console.log(Name)
+var speed = []
+
+var test = speedTest({maxTime: 5000})
+
+test.on('data', function (data) {
+  speed.push(data)
+  console.log(data)
+})
+
+test.on('error', function (err) {
+  console.error(err)
+})
+
 session.getSubtree({ oid: oid1 }, function (err, varbinds) {
   // vb = varbinds[0]
   // console.log(varbinds)
@@ -58,6 +71,9 @@ app.get('/ip', function (req, res) {
 })
 app.get('/subnet', function (req, res) {
   res.send(subnet)
+})
+app.get('/speed', function (req, res) {
+  res.send(speed)
 })
 
 app.use(express.static('public'))
