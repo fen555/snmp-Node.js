@@ -12,13 +12,19 @@ var community = 'public'
 var session = new snmp.Session({ host: host, community: community })
 var session2 = new snmp.Session({ host: host, community: community })
 var session3 = new snmp.Session({ host: host, community: community })
+var session4 = new snmp.Session({ host: host, community: community })
+var session5 = new snmp.Session({ host: host, community: community })
 var oid1 = [1, 3, 6, 1, 2, 1, 1]
 var oid2 = '.1.3.6.1.2.1.4.21.1.1' // ip
 var oid3 = '.1.3.6.1.2.1.4.21.1.11' // subnet
+var oid4 = '.1.3.6.1.2.1.2.2.1.2' //interface
+var oid5 = '.1.3.6.1.2.1.2.2.1.8' //up/down port
 var vb = []
 var ip = []
 var subnet = []
 var speed = []
+var interf = []
+var interf_status = []
 
 var test = speedTest({maxTime: 2000})
 test.on('data', function (data) {
@@ -69,6 +75,26 @@ session3.getSubtree({ oid: oid3 }, function (err, varbinds) {
   session3.close()
 })
 
+session4.getSubtree({ oid: oid4 }, function (err, varbinds) {
+  varbinds.forEach(function (data) {
+    // console.log(data.value)
+    interf.push({
+      interf: data.value
+    })
+  })
+  session4.close()
+})
+
+session5.getSubtree({ oid: oid5 }, function (err, varbinds) {
+  varbinds.forEach(function (data) {
+    // console.log(data.value)
+    interf_status.push({
+      status: data.value
+    })
+  })
+  session5.close()
+})
+
 // ///////////////////////////////////////////////////////////////
 app.get('/name', function (req, res) {
   res.send(vb)
@@ -81,6 +107,12 @@ app.get('/subnet', function (req, res) {
 })
 app.get('/speed', function (req, res) {
   res.send(speed)
+})
+app.get('/interface', function (req, res) {
+  res.send(interf)
+})
+app.get('/interfacestatus', function (req, res) {
+  res.send(interf_status)
 })
 
 app.use(express.static('public'))
