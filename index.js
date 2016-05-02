@@ -21,7 +21,6 @@ var subnet = []
 var speed = []
 
 var test = speedTest({maxTime: 2000})
-// var test = speedTest()
 test.on('data', function (data) {
   speed.push(data)
   console.log(data)
@@ -31,20 +30,21 @@ test.on('error', function (err) {
   console.error(err)
 })
 
-function timestamp (time) {
-  return moment(time).fromNow()
-}
+// function timestamp (time) {
+//   return moment(time).fromNow()
+// }
 
 session.getSubtree({ oid: oid1 }, function (err, varbinds) {
   // vb = varbinds[0]
-  var time = varbinds[2].value
+  // var time = varbinds[2].value
   vb.push({
     discription: varbinds[0].value,
-    uptime: timestamp(time),
+    // uptime: timestamp(time),
+    uptime: varbinds[2].value/360000,
     name: varbinds[4].value
   })
-  console.log(time)
-  console.log(timestamp(time))
+  // console.log(time)
+  // console.log(timestamp(time))
   // console.log(vb[0].name)
   session.close()
 })
