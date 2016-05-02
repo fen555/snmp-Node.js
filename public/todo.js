@@ -8,22 +8,22 @@ angular.module('todoApp', [])
     subnet()
     $interval(function () {
       speed()
-      console.log(1)
-    }, 7000)
+    // console.log(1)
+    }, 5100)
     app.title = 'Monitor'
     // app.ipnetwork = []
 
     function Name () {
       $http.get('/name').then(function success (response) {
         app.name = response.data
-        // console.log(app.name)
+      // console.log(app.name)
       })
     }
 
     function ip () {
       $http.get('/ip').then(function success (response) {
         app.ip = response.data
-        // console.log(app.ip)
+      // console.log(app.ip)
       })
     }
 
@@ -37,7 +37,7 @@ angular.module('todoApp', [])
     function speed () {
       $http.get('/speed').then(function success (response) {
         app.speed = response.data
-        // console.log(app.speed)
+      // console.log(app.speed)
       })
     }
   })
