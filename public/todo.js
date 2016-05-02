@@ -6,6 +6,8 @@ angular.module('todoApp', [])
     ip()
     speed()
     subnet()
+    interf()
+    interfstatus()
     $interval(function () {
       speed()
     // console.log(1)
@@ -30,13 +32,27 @@ angular.module('todoApp', [])
     function subnet () {
       $http.get('/subnet').then(function success (response) {
         app.subnet = response.data
-        console.log(app.subnet)
+        // console.log(app.subnet)
       })
     }
 
     function speed () {
       $http.get('/speed').then(function success (response) {
         app.speed = response.data
+      // console.log(app.speed)
+      })
+    }
+
+    function interf () {
+      $http.get('/interface').then(function success (response) {
+        app.interf = response.data
+      // console.log(response)
+      })
+    }
+
+    function interfstatus () {
+      $http.get('/interfacestatus').then(function success (response) {
+        app.interfstatus = response.data
       // console.log(app.speed)
       })
     }
