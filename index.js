@@ -17,8 +17,8 @@ var session5 = new snmp.Session({ host: host, community: community })
 var oid1 = [1, 3, 6, 1, 2, 1, 1]
 var oid2 = '.1.3.6.1.2.1.4.21.1.1' // ip
 var oid3 = '.1.3.6.1.2.1.4.21.1.11' // subnet
-var oid4 = '.1.3.6.1.2.1.2.2.1.2' //interface
-var oid5 = '.1.3.6.1.2.1.2.2.1.8' //up/down port
+var oid4 = '.1.3.6.1.2.1.2.2.1.2' // interface
+var oid5 = '.1.3.6.1.2.1.2.2.1.8' // up/down port
 var vb = []
 var ip = []
 var subnet = []
@@ -35,6 +35,19 @@ test.on('data', function (data) {
 test.on('error', function (err) {
   console.error(err)
 })
+setInterval(function () {
+  var test = speedTest({maxTime: 2000})
+  test.on('data', function (data) {
+    speed = []
+    speed.push(data)
+    console.log(data)
+    // console.log(data)
+  })
+
+  test.on('error', function (err) {
+    console.error(err)
+  })
+}, 20000)
 
 // function timestamp (time) {
 //   return moment(time).fromNow()
@@ -46,7 +59,7 @@ session.getSubtree({ oid: oid1 }, function (err, varbinds) {
   vb.push({
     discription: varbinds[0].value,
     // uptime: timestamp(time),
-    uptime: varbinds[2].value/360000,
+    uptime: varbinds[2].value / 360000,
     name: varbinds[4].value
   })
   // console.log(time)

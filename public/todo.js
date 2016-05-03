@@ -10,11 +10,39 @@ angular.module('todoApp', [])
     interfstatus()
     $interval(function () {
       speed()
-    // console.log(1)
+    // console.log(app.speed[0].speeds.download)
     }, 5100)
     app.title = 'Monitor'
     // app.ipnetwork = []
-
+    var data = {
+      labels: ['Download', 'Upload'],
+      datasets: [
+        {
+          label: 'My First dataset',
+          backgroundColor: 'rgba(255,99,132,0.2)',
+          borderColor: 'rgba(255,99,132,1)',
+          borderWidth: 1,
+          hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+          hoverBorderColor: 'rgba(255,99,132,1)',
+          data: [10, 15],
+        }
+      ]
+    }
+    var ctx = document.getElementById('myChart')
+    new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      options: {
+        scales: {
+          xAxes: [{
+            stacked: true
+          }],
+          yAxes: [{
+            stacked: true
+          }]
+        }
+      }
+    })
     function Name () {
       $http.get('/name').then(function success (response) {
         app.name = response.data
@@ -32,7 +60,7 @@ angular.module('todoApp', [])
     function subnet () {
       $http.get('/subnet').then(function success (response) {
         app.subnet = response.data
-        // console.log(app.subnet)
+      // console.log(app.subnet)
       })
     }
 
