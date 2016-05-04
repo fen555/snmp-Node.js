@@ -3,6 +3,9 @@ angular.module('todoApp', [])
   .controller('appController', function ($http, $interval) {
     var app = this
     Name()
+    $interval(function () {
+      Name()
+    }, 30000)
     ip()
     speed()
     subnet()
@@ -11,20 +14,31 @@ angular.module('todoApp', [])
     $interval(function () {
       speed()
     // console.log(app.speed[0].speeds.download)
-    }, 5100)
+    }, 15000)
+    var dl = 0
+    var ul = 0
+    setTimeout(function () {
+      $interval(function () {
+        dl = app.speed[0].speeds.download
+        ul = app.speed[0].speeds.upload
+        console.log(dl + ' + ' + ul)
+      }, 5000)
+    }, 20000)
+    console.log(dl + ' - ' + ul)
+    app.load = false
     app.title = 'Monitor'
     // app.ipnetwork = []
     var data = {
       labels: ['Download', 'Upload'],
       datasets: [
         {
-          label: 'My First dataset',
+          label: 'Speed Test',
           backgroundColor: 'rgba(255,99,132,0.2)',
           borderColor: 'rgba(255,99,132,1)',
           borderWidth: 1,
           hoverBackgroundColor: 'rgba(255,99,132,0.4)',
           hoverBorderColor: 'rgba(255,99,132,1)',
-          data: [10, 15],
+          data: [dl, ul],
         }
       ]
     }
@@ -43,6 +57,9 @@ angular.module('todoApp', [])
         }
       }
     })
+    app.timee = function (timee) {
+      return humanizeDuration(timee)
+    }
     function Name () {
       $http.get('/name').then(function success (response) {
         app.name = response.data

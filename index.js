@@ -25,10 +25,12 @@ var subnet = []
 var speed = []
 var interf = []
 var interf_status = []
+var download = []
 
 var test = speedTest({maxTime: 2000})
 test.on('data', function (data) {
   speed.push(data)
+  download.push(data.speeds.download)
   console.log(data)
 })
 
@@ -59,7 +61,7 @@ session.getSubtree({ oid: oid1 }, function (err, varbinds) {
   vb.push({
     discription: varbinds[0].value,
     // uptime: timestamp(time),
-    uptime: varbinds[2].value / 360000,
+    uptime: varbinds[2].value,
     name: varbinds[4].value
   })
   // console.log(time)

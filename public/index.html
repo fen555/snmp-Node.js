@@ -5,6 +5,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
   <script src="todo.js"></script>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="load.css">
+  <script src="humanize-duration.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
@@ -14,10 +16,48 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.1/Chart.min.js"></script>
 </head>
 <body ng-controller="appController as app" class="container">
+<div ng-show="app.load">
+      <div id="main">
 
+    <div id="red">
+      <div class="facered">
+      <div class="eyered" ></div>
+      <div class="eyered1"></div>
+      <div class="smilered"></div>
+      </div>
+      </div>
+
+    <div id="blue">
+      <div class="faceblue">
+        <div class="eyeblue"></div>
+        <div class="eyeblue1"></div>
+        <div class="smileblue"></div>
+
+
+      </div>
+      </div>
+    <div id="green">
+      <div class="facegreen">
+
+      <div class="eyegreen"></div>
+        <div class="eyegreen1"></div>
+        <div class="smilegreen"></div>
+      </div>
+      </div>
+    <div id="yellow">
+      <div class="faceyellow">
+
+      <div class="eyeyellow"></div>
+        <div class="eyeyellow1"></div>
+        <div class="smileyellow"></div>
+      </div>
+
+      </div>
+    </div>
+</div>
   <div ng-repeat="show in app.name">
     name : {{show.name}} <br>
-    uptime : {{show.uptime}} <br>
+    uptime : {{app.timee(show.uptime)}} <br>
     discription : {{show.discription}} <br>
     <hr>
   </div>
