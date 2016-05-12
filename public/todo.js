@@ -28,35 +28,35 @@ angular.module('todoApp', [])
     app.load = false
     app.title = 'Monitor'
     // app.ipnetwork = []
-    var data = {
-      labels: ['Download', 'Upload'],
-      datasets: [
-        {
-          label: 'Speed Test',
-          backgroundColor: 'rgba(255,99,132,0.2)',
-          borderColor: 'rgba(255,99,132,1)',
-          borderWidth: 1,
-          hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-          hoverBorderColor: 'rgba(255,99,132,1)',
-          data: [dl, ul],
-        }
-      ]
-    }
-    var ctx = document.getElementById('myChart')
-    new Chart(ctx, {
-      type: 'bar',
-      data: data,
-      options: {
-        scales: {
-          xAxes: [{
-            stacked: true
-          }],
-          yAxes: [{
-            stacked: true
-          }]
-        }
-      }
-    })
+    // var data = {
+    //   labels: ['Download', 'Upload'],
+    //   datasets: [
+    //     {
+    //       label: 'Speed Test',
+    //       backgroundColor: 'rgba(255,99,132,0.2)',
+    //       borderColor: 'rgba(255,99,132,1)',
+    //       borderWidth: 1,
+    //       hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+    //       hoverBorderColor: 'rgba(255,99,132,1)',
+    //       data: [dl, ul],
+    //     }
+    //   ]
+    // }
+    // var ctx = document.getElementById('myChart')
+    // new Chart(ctx, {
+    //   type: 'bar',
+    //   data: data,
+    //   options: {
+    //     scales: {
+    //       xAxes: [{
+    //         stacked: true
+    //       }],
+    //       yAxes: [{
+    //         stacked: true
+    //       }]
+    //     }
+    //   }
+    // })
     app.timee = function (timee) {
       return humanizeDuration(timee)
     }
